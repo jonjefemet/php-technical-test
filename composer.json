@@ -1,0 +1,19 @@
+{
+    "name": "jonjefemet/technical-test",
+    "description": "Prueba tecnica",
+    "type": "project",
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "Src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jonjefemet",
+            "email": "jonshua_97@outlook.com"
+        }
+    ]
+}
