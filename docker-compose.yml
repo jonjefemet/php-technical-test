@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  web:
+    container_name: php-technical-test-web
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
+    depends_on:
+      - db
+    expose:
+      - 9000
+    ports:
+      - 9000:80
+    volumes:
+      - .:/app
+  db:
+    image: mongo:latest
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - 27017:27017
+volumes:
+  mongodb_data:
