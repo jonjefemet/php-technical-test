@@ -15,13 +15,13 @@ class UpdateController extends Controller
 {
     public function action(Request $request, $args)
     {
-        $productFinder = new ProductUpdater(new ProductMongoRepository());
+        $productUpdater = new ProductUpdater(new ProductMongoRepository());
 
         $requestUpdateProduct = new RequestUpdateProduct(
             $args['id'],
             $request->getParsedBody(),
         );
-        $product = $productFinder->update($requestUpdateProduct);
+        $product = $productUpdater->update($requestUpdateProduct);
 
         return $product;
     }

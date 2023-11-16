@@ -16,13 +16,13 @@ class CreateController extends Controller
 {
     public function action(Request $request, $args)
     {
-        $productFinder = new ProductCreator(new ProductMongoRepository());
+        $productCreator = new ProductCreator(new ProductMongoRepository());
         $request = new RequestCreateProduct(
             $request->getParsedBody()['name'],
             $request->getParsedBody()['price'],
             $request->getParsedBody()['stock'],
         );
-        $product = $productFinder->create($request);
+        $product = $productCreator->create($request);
 
         return [
             'data' => $product,

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services\Product;
 
 use App\Services\Product\Actions\CreateController;
+use App\Services\Product\Actions\DeleteController;
 use App\Services\Product\Actions\FindController;
 use App\Services\Product\Actions\FindOneController;
 use App\Services\Product\Actions\UpdateController;
@@ -18,5 +19,6 @@ final class ProductRoutes
         $app->get('/api/product/{id}', FindOneController::class . ':handleRequest');
         $app->post('/api/product', CreateController::class . ':handleRequest');
         $app->put('/api/product/{id}', UpdateController::class . ':handleRequest');
+        $app->delete('/api/product/{id}', DeleteController::class . ':handleRequest');
     }
 }
