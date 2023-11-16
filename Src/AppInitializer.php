@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
-
 use Slim\Factory\AppFactory;
 
 class AppInitializer
@@ -16,6 +13,7 @@ class AppInitializer
         $app = AppFactory::create();
 
         $app->addRoutingMiddleware();
+        $app->addBodyParsingMiddleware();
 
         $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 

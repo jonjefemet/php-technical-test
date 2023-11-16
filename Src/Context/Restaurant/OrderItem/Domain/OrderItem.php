@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\OrderItem\Domain;
+namespace App\Context\Restaurant\OrderItem\Domain;
 
-use Src\Context\Restaurant\Product\Domain\Product;
-use Src\Context\Shared\Domain\Aggregate\AggregateRoot;
+use App\Context\Restaurant\Product\Domain\Product;
+use App\Context\Shared\Domain\Aggregate\AggregateRoot;
 
 class OrderItem extends AggregateRoot
 {

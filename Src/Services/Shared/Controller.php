@@ -25,8 +25,10 @@ abstract class Controller
     {
         $result = $this->action($request, $args);
 
-        $status = $result['status'] ?? (HttpStatusEnum::OK)->value;
-        $data =  (isset($result['data'])) ? $result['data'] : $result;
+        $isCustomResponse = is_array($result) && array_key_exists('data', $result) && array_key_exists('status', $result);
+
+        $data = $isCustomResponse ? $result['data'] : $result;
+        $status = $isCustomResponse ? $result['status'] : HttpStatusEnum::OK->value;
 
         return $this->jsonResponse($response, $data, $status);
     }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\Product\Application\Create;
+namespace App\Context\Restaurant\Product\Application\Create;
 
-use Src\Context\Restaurant\Product\Application\ResponseProduct;
-use Src\Context\Restaurant\Product\Domain\Product;
-use Src\Context\Restaurant\Product\Domain\Repository\ProductRepository;
+use App\Context\Restaurant\Product\Application\ResponseProduct;
+use App\Context\Restaurant\Product\Domain\Product;
+use App\Context\Restaurant\Product\Domain\Repository\ProductRepository;
 
 final class ProductCreator
 {

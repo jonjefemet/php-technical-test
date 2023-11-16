@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\Order\Domain;
+namespace App\Context\Restaurant\Order\Domain;
 
-use Src\Context\Shared\Domain\Aggregate\AggregateRoot;
+use App\Context\Shared\Domain\Aggregate\AggregateRoot;
 
 class Order extends AggregateRoot
 {

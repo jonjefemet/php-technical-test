@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\Product\Domain\Repository;
+namespace App\Context\Restaurant\Product\Domain\Repository;
 
-use Src\Context\Restaurant\Product\Domain\Product;
-use Src\Context\Restaurant\Product\Domain\ProductId;
+use App\Context\Restaurant\Product\Domain\Product;
+use App\Context\Restaurant\Product\Domain\ProductId;
 
 interface ProductRepository
 {

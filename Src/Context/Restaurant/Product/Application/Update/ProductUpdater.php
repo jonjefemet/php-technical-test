@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\Product\Application\Delete;
+namespace App\Context\Restaurant\Product\Application\Update;
 
-use Src\Context\Restaurant\Product\Application\Create\RequestUpdateProduct;
-use Src\Context\Restaurant\Product\Application\ResponseProduct;
-use Src\Context\Restaurant\Product\Domain\Product;
-use Src\Context\Restaurant\Product\Domain\Repository\ProductRepository;
+use App\Context\Restaurant\Product\Application\Update\RequestUpdateProduct;
+use App\Context\Restaurant\Product\Application\ResponseProduct;
+use App\Context\Restaurant\Product\Domain\Product;
+use App\Context\Restaurant\Product\Domain\Repository\ProductRepository;
 
 final class ProductUpdater
 {
@@ -23,9 +23,9 @@ final class ProductUpdater
 
         $updatedProduct = new Product(
             $request->id,
-            $request->name ?? $product->name->getValue(),
-            $request->price ?? $product->price->getValue(),
-            $request->stock ?? $product->stock->getValue(),
+            $request->name ?? $product->name,
+            $request->price ?? $product->price,
+            $request->stock ?? $product->stock,
         );
 
         return new ResponseProduct($updatedProduct);

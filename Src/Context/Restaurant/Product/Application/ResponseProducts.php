@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\Product\Application;
+namespace App\Context\Restaurant\Product\Application;
 
-use Src\Context\Restaurant\Product\Domain\Product;
+use App\Context\Restaurant\Product\Domain\Product;
 
 final class ResponseProducts
 {
     public readonly array $products;
 
     /**
-     * @param Product[] $product
+     * @param Product[] $products
      */
-    public function __construct(array $product)
+    public function __construct(array $products)
     {
-        $this->products = array_map(fn (Product $product) => $product->toPrimitives(), $product);
+        $this->products = array_map(fn (Product $product) => $product->toPrimitives(), $products);
     }
 }

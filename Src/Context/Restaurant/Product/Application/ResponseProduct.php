@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\Product\Application;
+namespace App\Context\Restaurant\Product\Application;
 
-use Src\Context\Restaurant\Product\Domain\Product;
+use App\Context\Restaurant\Product\Domain\Product;
 
 final class ResponseProduct
 {

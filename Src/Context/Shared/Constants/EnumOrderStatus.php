@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\Order\Domain;
+namespace App\Context\Restaurant\Order\Domain;
 
 use ReflectionClass;
 

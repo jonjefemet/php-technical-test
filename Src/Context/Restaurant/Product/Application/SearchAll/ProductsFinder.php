@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\Product\Application\Delete;
+namespace App\Context\Restaurant\Product\Application\SearchAll;
 
-use Src\Context\Restaurant\Product\Application\ResponseProducts;
-use Src\Context\Restaurant\Product\Domain\Repository\ProductRepository;
+use App\Context\Restaurant\Product\Application\ResponseProducts;
+use App\Context\Restaurant\Product\Domain\Repository\ProductRepository;
 
 final class ProductsFinder
 {

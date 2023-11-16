@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\Product\Domain;
+namespace App\Context\Restaurant\Product\Domain;
 
 use App\Utilities\UuidGenerator;
-use Src\Context\Shared\Domain\Aggregate\AggregateRoot;
+use App\Context\Shared\Domain\Aggregate\AggregateRoot;
 
 class Product extends AggregateRoot
 {

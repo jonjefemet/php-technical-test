@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\OrderItem\Domain;
+namespace App\Context\Restaurant\OrderItem\Domain;
 
-use Src\Context\Shared\Domain\Collection;
+use App\Context\Shared\Domain\Collection;
 
 class ProductCollection extends Collection
 {

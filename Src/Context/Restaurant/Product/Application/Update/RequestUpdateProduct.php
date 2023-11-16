@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Src\Context\Restaurant\Product\Application\Create;
+namespace App\Context\Restaurant\Product\Application\Update;
 
-use Src\Context\Restaurant\Product\Domain\ProductId;
-use Src\Context\Restaurant\Product\Domain\ProductName;
-use Src\Context\Restaurant\Product\Domain\ProductPrice;
-use Src\Context\Restaurant\Product\Domain\ProductStock;
+use App\Context\Restaurant\Product\Domain\ProductId;
+use App\Context\Restaurant\Product\Domain\ProductName;
+use App\Context\Restaurant\Product\Domain\ProductPrice;
+use App\Context\Restaurant\Product\Domain\ProductStock;
 
 final class RequestUpdateProduct
 {
