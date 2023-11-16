@@ -5,14 +5,14 @@ services:
     build:
       context: .
       dockerfile: docker/web/Dockerfile
+    volumes:
+      - .:/var/www/html
     depends_on:
       - db
     expose:
       - 9000
     ports:
       - 9000:80
-    volumes:
-      - .:/app
   db:
     image: mongo:latest
     volumes:
