@@ -20,6 +20,9 @@ abstract class MongoCollectionWrapper implements Collection
             $this->databaseName(),
             $this->collectionName()
         );
+
+        $config = $this->getConfig();
+        $this->setIndexes($config['indexes'] ?? []);
     }
 
     public function insertOne(array $document)
@@ -49,5 +52,19 @@ abstract class MongoCollectionWrapper implements Collection
     {
         $result = $this->collection->deleteOne($filter, $options);
         return $result->getDeletedCount();
+    }
+
+    public function insertMany(array $documents)
+    {
+        $this->collection->insertMany($documents);
+    }
+
+    abstract protected function getConfig(): array;
+
+    private function setIndexes(array $indexes): void
+    {
+        foreach ($indexes as $index) {
+            $this->collection->createIndex($index['keys'], $index['options'] ?? []);
+        }
     }
 }

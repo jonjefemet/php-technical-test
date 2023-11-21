@@ -4,54 +4,49 @@ declare(strict_types=1);
 
 namespace App\Context\Restaurant\OrderItem\Domain;
 
-use App\Context\Restaurant\Product\Domain\Product;
+use App\Context\Restaurant\Order\Domain\OrderId;
+use App\Context\Restaurant\Product\Domain\ProductId;
 use App\Context\Shared\Domain\Aggregate\AggregateRoot;
 
 class OrderItem extends AggregateRoot
 {
 
+    public readonly OrderId $orderId;
+
+    public readonly ProductId $productId;
+
     public readonly OrderItemQuantity $quantity;
 
     public readonly OrderItemTotalPrice $totalPrice;
 
-    public readonly ProductCollection $products;
-
     public function __construct(
+        OrderId $orderId,
+        ProductId $productId,
         OrderItemQuantity $quantity,
         OrderItemTotalPrice $totalPrice,
-        ProductCollection $products
     ) {
+        $this->orderId = $orderId;
+        $this->productId = $productId;
         $this->quantity = $quantity;
         $this->totalPrice = $totalPrice;
-        $this->products = $products;
     }
 
-    static function fromPrimitives(int $quantity, float $totalPrice, array $products): OrderItem
+    static function fromPrimitives(string $orderId, string $productId, int $quantity, float $totalPrice): OrderItem
     {
         return new self(
+            new OrderId($orderId),
+            new ProductId($productId),
             new OrderItemQuantity($quantity),
             new OrderItemTotalPrice($totalPrice),
-            new ProductCollection(
-                array_map(function (array $product) {
-                    return Product::fromPrimitives(
-                        $product['id'],
-                        $product['name'],
-                        $product['price'],
-                        $product['stock']
-                    );
-                }, $products)
-            )
         );
     }
 
     public function toPrimitives(): array
     {
         return [
+            'productId' => $this->productId->getValue(),
             'quantity' => $this->quantity->getValue(),
             'totalPrice' => $this->totalPrice->getValue(),
-            'products' => array_map(function (Product $product) {
-                return $product->toPrimitives();
-            }, $this->products->items())
         ];
     }
 }

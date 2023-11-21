@@ -55,4 +55,21 @@ class Product extends AggregateRoot
             'stock' => $this->stock->getValue(),
         ];
     }
+
+    public function reduceStock(int $quantity): Product
+    {
+
+        $newStock = $this->stock->getValue() - $quantity;
+
+        if ($newStock < 0) {
+            throw new \Exception('Stock cannot be negative');
+        }
+
+        return new self(
+            $this->id,
+            $this->name,
+            $this->price,
+            new ProductStock($newStock)
+        );
+    }
 }

@@ -25,4 +25,12 @@ class Order extends AggregateRoot
             'status' => $this->status->getValue(),
         ];
     }
+
+    static function fromPrimitives(string $id, string $status): Order
+    {
+        return new self(
+            new OrderId($id),
+            new OrderStatus($status)
+        );
+    }
 }

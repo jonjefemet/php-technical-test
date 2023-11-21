@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Context\Restaurant\Product\Infrastructure\Collection;
+namespace App\Context\Restaurant\OrderItem\Infrastructure\Collection;
 
 use App\Context\Shared\Infrastructure\MongoDB\MongoCollectionWrapper;
 use App\Context\Shared\Infrastructure\MongoDB\Restaurant\RestaurantMongoService;
 
-class ProductMongoCollection extends MongoCollectionWrapper
+class OrderItemMongoCollection extends MongoCollectionWrapper
 {
 
     public function __construct()
@@ -17,7 +17,7 @@ class ProductMongoCollection extends MongoCollectionWrapper
 
     protected function collectionName(): string
     {
-        return 'products';
+        return 'orderItems';
     }
 
     protected function databaseName(): string
@@ -27,6 +27,13 @@ class ProductMongoCollection extends MongoCollectionWrapper
 
     protected function getConfig(): array
     {
-        return [];
+        return [
+            'indexes' => [
+                [
+                    'keys' => ['orderId' => 1],
+                    'options' => [],
+                ],
+            ],
+        ];
     }
 }

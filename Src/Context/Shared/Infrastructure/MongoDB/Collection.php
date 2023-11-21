@@ -8,6 +8,8 @@ interface Collection
 {
     public function insertOne(array $document);
 
+    public function insertMany(array $documents);
+
     public function findOne(array $filter = [], array $options = []): array;
 
     public function find(array $filter = [], array $options = []): array;
