@@ -43,7 +43,7 @@ class OrderItemMongoRepository implements OrderItemRepository
                 $orderItem['orderId'],
                 $orderItem['productId'],
                 $orderItem['quantity'],
-                $orderItem['price']
+                $orderItem['totalPrice']
             ),
             $orderItems
         );

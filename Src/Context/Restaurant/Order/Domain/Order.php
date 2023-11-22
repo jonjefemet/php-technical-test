@@ -64,11 +64,25 @@ class Order extends AggregateRoot
         array_push($this->orderItems, $orderItem);
     }
 
+    public function addOrderItem(OrderItem $orderItem): void
+    {
+        array_push($this->orderItems, $orderItem);
+    }
+
     /**
      * @return OrderItem[]
      */
     public function getItems(): array
     {
         return $this->orderItems;
+    }
+
+    public function getTotal()
+    {
+        $total = 0;
+        foreach ($this->orderItems as $item) {
+            $total += $item->totalPrice->getValue();
+        }
+        return $total;
     }
 }

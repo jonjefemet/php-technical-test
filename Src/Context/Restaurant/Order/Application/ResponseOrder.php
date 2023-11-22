@@ -17,6 +17,7 @@ class ResponseOrder
         $orderPrimitive['orderItems'] = array_map(function (OrderItem $orderItem) {
             return $orderItem->toPrimitives();
         }, $order->getItems());
+        $orderPrimitive['totalPrice'] = $order->getTotal();
         $this->order = $orderPrimitive;
     }
 }
