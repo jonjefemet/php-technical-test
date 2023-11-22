@@ -7,14 +7,15 @@ namespace App\Context\Restaurant\Order\Infrastructure\Repository;
 use App\Context\Restaurant\Order\Domain\Order;
 use App\Context\Restaurant\Order\Domain\OrderId;
 use App\Context\Restaurant\Order\Domain\Repository\OrderRepository;
+use App\Context\Restaurant\Order\Infrastructure\Collection\OrderMongoCollection;
 use App\Context\Shared\Infrastructure\MongoDB\Collection;
 
 class OrderMongoRepository implements OrderRepository
 {
     private readonly Collection $orderItemMongoCollection;
-    public function __construct(Collection $orderItemMongoCollection)
+    public function __construct()
     {
-        $this->orderItemMongoCollection = $orderItemMongoCollection;
+        $this->orderItemMongoCollection = new OrderMongoCollection();
     }
 
     function save(Order $order): void

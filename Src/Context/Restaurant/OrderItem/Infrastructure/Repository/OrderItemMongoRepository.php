@@ -8,17 +8,30 @@ use App\Context\Restaurant\Order\Domain\OrderId;
 use App\Context\Restaurant\OrderItem\Domain\OrderItem;
 use App\Context\Shared\Infrastructure\MongoDB\Collection;
 use App\Context\Restaurant\OrderItem\Domain\Repository\OrderItemRepository;
+use App\Context\Restaurant\OrderItem\Infrastructure\Collection\OrderItemMongoCollection;
 
 class OrderItemMongoRepository implements OrderItemRepository
 {
     private readonly Collection $orderItemMongoCollection;
-    public function __construct(Collection $orderItemMongoCollection)
+    public function __construct()
     {
-        $this->orderItemMongoCollection = $orderItemMongoCollection;
+        $this->orderItemMongoCollection = new OrderItemMongoCollection();
     }
 
+    /**
+     * @param OrderItem[] $orderItems
+     */
     function saveAll(array $orderItems): void
     {
+        $orderItems = array_map(
+            fn (OrderItem $orderItem) => [
+                'orderId' => $orderItem->orderId->getValue(),
+                'productId' => $orderItem->productId->getValue(),
+                'quantity' => $orderItem->quantity->getValue(),
+                'totalPrice' => $orderItem->totalPrice->getValue(),
+            ],
+            $orderItems
+        );
         $this->orderItemMongoCollection->insertMany($orderItems);
     }
 

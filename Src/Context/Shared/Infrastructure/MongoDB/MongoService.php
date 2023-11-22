@@ -11,6 +11,8 @@ abstract class MongoService
 
     private $client;
 
+    public $session = null;
+
     public function __construct()
     {
         $this->client = new MongoClient($this->getUri());
@@ -22,4 +24,10 @@ abstract class MongoService
     }
 
     abstract protected function getUri(): string;
+
+    abstract public function startTransaction(): void;
+
+    abstract public function commitTransaction(): void;
+
+    abstract public function abortTransaction(): void;
 }

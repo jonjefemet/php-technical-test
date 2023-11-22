@@ -14,7 +14,7 @@ abstract class MongoCollectionWrapper implements Collection
 
     private MongoCollection $collection;
 
-    public function __construct(MongoService $service)
+    public function __construct(private readonly MongoService $service)
     {
         $this->collection = $service->getClient()->selectCollection(
             $this->databaseName(),
@@ -25,9 +25,9 @@ abstract class MongoCollectionWrapper implements Collection
         $this->setIndexes($config['indexes'] ?? []);
     }
 
-    public function insertOne(array $document)
+    public function insertOne(array $document, array $options = [])
     {
-        $this->collection->insertOne($document);
+        $this->collection->insertOne($document, $options);
     }
 
     public function findOne(array $filter = [], array $options = []): array
@@ -54,9 +54,9 @@ abstract class MongoCollectionWrapper implements Collection
         return $result->getDeletedCount();
     }
 
-    public function insertMany(array $documents)
+    public function insertMany(array $documents, array $options = [])
     {
-        $this->collection->insertMany($documents);
+        $this->collection->insertMany($documents, $options);
     }
 
     abstract protected function getConfig(): array;
@@ -66,5 +66,14 @@ abstract class MongoCollectionWrapper implements Collection
         foreach ($indexes as $index) {
             $this->collection->createIndex($index['keys'], $index['options'] ?? []);
         }
+    }
+
+    private function getSession(): array
+    {
+        $options = [];
+        if ($this->service->session) {
+            $options['session'] = $this->service->session;
+        }
+        return $options;
     }
 }

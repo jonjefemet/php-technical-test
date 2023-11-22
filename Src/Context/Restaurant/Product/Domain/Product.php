@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Context\Restaurant\Product\Domain;
 
+use App\Context\Restaurant\Product\Domain\Event\ProductStockReducedEvent;
 use App\Utilities\UuidGenerator;
 use App\Context\Shared\Domain\Aggregate\AggregateRoot;
 
@@ -64,6 +65,13 @@ class Product extends AggregateRoot
         if ($newStock < 0) {
             throw new \Exception('Stock cannot be negative');
         }
+
+        $this->record(
+            new ProductStockReducedEvent(
+                $this->id->getValue(),
+                $quantity
+            )
+        );
 
         return new self(
             $this->id,

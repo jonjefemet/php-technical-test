@@ -41,6 +41,16 @@ class OrderItem extends AggregateRoot
         );
     }
 
+    static function create(OrderId $orderId, ProductId $productId, OrderItemQuantity $quantity, OrderItemTotalPrice $totalPrice): OrderItem
+    {
+        return new self(
+            $orderId,
+            $productId,
+            $quantity,
+            $totalPrice,
+        );
+    }
+
     public function toPrimitives(): array
     {
         return [
