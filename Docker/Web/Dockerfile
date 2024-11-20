@@ -1,5 +1,5 @@
 # Use the official PHP image as the base image
-FROM php:8.2-apache
+FROM php:8.3-apache
 
 
 RUN if ! [ -x "$(command -v composer)" ]; then curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; fi
